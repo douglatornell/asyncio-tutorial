@@ -1,6 +1,9 @@
 import asyncio
 import websockets
 
+import aioredis
+from aioredis.pubsub import Receiver
+
 
 async def beat1(websocket):
     while True:
@@ -24,8 +27,21 @@ async def reactive_ws_handler(websocket):
             await websocket.send("pong")
 
 
+async def redis_relay(websocket):
+    conn = await aioredis.create_connection(("localhost", 6379))
+    receiver = Receiver()
+    conn.execute_pubsub("subscribe", receiver.channel("marketupdates"))
+    while await receiver.wait_message():
+        *_, message = await receiver.get()
+        await websocket.send(message.decode())
+
+
 async def ws_handler(websocket, path):
-    await asyncio.gather(active_ws_handler(websocket), reactive_ws_handler(websocket))
+    await asyncio.gather(
+        active_ws_handler(websocket),
+        reactive_ws_handler(websocket),
+        redis_relay(websocket),
+    )
 
 
 # initialize websocket server from this handler

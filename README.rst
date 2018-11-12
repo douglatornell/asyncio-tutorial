@@ -33,3 +33,15 @@ Run ``ws.py`` to launch async web socket server.
 Open http://localhost:9999/ in `Simple Web Socket Client`_.
 
 Close and re-open web socket client any time ``ws.py`` is re-started.
+
+Start ``redis`` server::
+
+  redis-server
+
+Start interactive ``redis`` client::
+
+  redis-cli
+
+Publish message on ``marketupdates`` channel:
+
+  PUBLISH markupdates "hello world"
