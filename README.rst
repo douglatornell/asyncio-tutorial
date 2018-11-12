@@ -42,6 +42,6 @@ Start interactive ``redis`` client::
 
   redis-cli
 
-Publish message on ``marketupdates`` channel:
+Publish message on ``marketupdates`` channel::
 
   PUBLISH markupdates "hello world"
