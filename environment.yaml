@@ -1,0 +1,10 @@
+name: asyncio-tutorial
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - pip
+  - python=3.7
+  - redis=5
