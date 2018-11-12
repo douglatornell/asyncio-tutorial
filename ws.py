@@ -2,10 +2,20 @@ import asyncio
 import websockets
 
 
-async def ws_handler(websocket, path):
+async def beat1(websocket):
     while True:
         await asyncio.sleep(1)
         await websocket.send("💚")
+
+
+async def beat2(websocket):
+    while True:
+        await asyncio.sleep(2)
+        await websocket.send("💓")
+
+
+async def ws_handler(websocket, path):
+    await asyncio.gather(beat1(websocket), beat2(websocket))
 
 
 # initialize websocket server from this handler
