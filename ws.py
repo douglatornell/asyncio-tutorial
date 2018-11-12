@@ -14,8 +14,18 @@ async def beat2(websocket):
         await websocket.send("💓")
 
 
-async def ws_handler(websocket, path):
+async def active_ws_handler(websocket):
     await asyncio.gather(beat1(websocket), beat2(websocket))
+
+
+async def reactive_ws_handler(websocket):
+    async for message in websocket:
+        if message.lower() == "ping":
+            await websocket.send("pong")
+
+
+async def ws_handler(websocket, path):
+    await asyncio.gather(active_ws_handler(websocket), reactive_ws_handler(websocket))
 
 
 # initialize websocket server from this handler
