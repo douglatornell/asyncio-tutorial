@@ -19,3 +19,17 @@ Environment
   conda env create -f environment.yaml
   conda activate asyncio-tutorial
   pip install -r requirements.txt
+
+
+Testing
+=======
+
+Install `Simple Web Socket Client`_ add-on for Firefox (or Chrome).
+
+.. _Simple Web Socket Client: https://addons.mozilla.org/en-US/firefox/addon/simple-websocket-client/
+
+Run ``ws.py`` to launch async web socket server.
+
+Open http://localhost:9999/ in `Simple Web Socket Client`_.
+
+Close and re-open web socket client any time ``ws.py`` is re-started.
