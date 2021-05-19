@@ -32,7 +32,7 @@ ujson==1.35
 uvloop==0.11.2
 wcwidth==0.1.7
 websockets==6.0
-Jinja2==2.10
+Jinja2==2.11.3
 aiofiles==0.4.0
 aioredis==1.1.0
 appnope==0.1.0
